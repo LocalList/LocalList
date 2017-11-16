@@ -5,12 +5,10 @@
   "description": "",
   "author": "",
   "license": "",
-  "engines": {
-    "node": ">=6.4.0"
-  },
   "scripts": {
     "start": "node server/app.js",
-    "react-dev": "webpack -d --watch"
+    "react-dev": "webpack -d --watch",
+    "postinstall": "webpack -p"
   },
   "dependencies": {
     "babel-core": "^6.26.0",

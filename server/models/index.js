@@ -1,11 +1,19 @@
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
+const config = require('../../config/config.js');
 
 let db = {};
-db.sequelize = new Sequelize('locallist', 'jackson', 'jackson', {
-  dialect: 'postgres'
-});
+
+if (process.env.DATABASE_URL) {
+	db.sequelize = new Sequelize(process.env.DATABASE_URL, {
+	  dialect: 'postgres'
+	});
+} else {
+	db.sequelize = new Sequelize('locallist', config.development.username, config.development.password, {
+	  dialect: 'postgres'
+	});
+}
 
 db.sequelize
 .authenticate()

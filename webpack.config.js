@@ -8,7 +8,8 @@ const config = {
   entry: APP_DIR + '/index.jsx',
   output: {
     path: BUILD_DIR,
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: '/'
   },
   module: {
     loaders: [
@@ -18,6 +19,9 @@ const config = {
         loader: 'babel-loader'
       }
     ]
+  },
+  devServer: {
+    historyApiFallback: true
   }
 };
 

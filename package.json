@@ -9,6 +9,7 @@
     "start": "node server/app.js",
     "server-dev": "nodemon server/app.js",
     "react-dev": "webpack -d --watch",
+    "db:seed": "node server/seeds/index.js",
     "heroku-postbuild": "webpack"
   },
   "dependencies": {
@@ -18,14 +19,17 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.7.2",
+    "bcrypt": "^1.0.3",
     "body": "^5.1.0",
     "express": "^4.16.2",
     "parser": "^0.1.4",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+    "pg": "^7.4.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "sequelize": "^4.22.8",
+    "sequelize-cli": "^3.1.0",
     "webpack": "^3.8.1"
   },
   "devDependencies": {

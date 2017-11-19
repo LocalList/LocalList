@@ -12,20 +12,27 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 
+//refactor to use only promises if possible (remove cb 'done')
 passport.use(new LocalStrategy(
   function (username, password, done) {
-    console.log('username --->', username);
-    models.users.findOne({ username: username }, function (err, user) {
-      console.log('--user--', user);
-
-      if (err) { return done(err); }
+    models.user.findOne({ username: username })
+    .then(user => {
       if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
+        done(null, false, { message: 'Incorrect username.' });
+        return;
       }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
+
+      user.validatePassword(password)
+      .then(passwordIsMatch => {
+        if (passwordIsMatch) {
+          done(null, user);
+        } else {
+          done(null, false, { message: 'Incorrect password.' });
+        }
+      })
+    })
+    .catch(err => {
+      done(err); 
     });
   }
 ));

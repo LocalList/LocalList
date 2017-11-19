@@ -1,23 +1,30 @@
-let validPassword = function(password) {
-    console.log('--this--', this);
-    return this.password === password;
-}
+Promise = require('bluebird');
+const bcrypt = require('bcrypt');
 
-let users = [{
-    username: 'brandon',
-    password: 'password',
-    id: 1,
-    validPassword: validPassword
-}];
+module.exports = (db, DataTypes) => {
+  let User = db.define('user', {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    username: DataTypes.STRING,
+    password: DataTypes.STRING
+  });
 
+  User.beforeCreate((user, options) => {
+    return bcrypt.hash(user.password, 10)
+    .then(hash => {
+        user.password = hash;
+    })
+    .catch((err) => {
+        console.log('oh no', err);
+    })
+  });
 
-
-
-module.exports = {
-    findOne: (options, cb) => { 
-        cb(null, users.find((user) => {
-            console.log('--user2---', user);
-            return user.username === options.username
-        }));
-    }
+  User.prototype.validatePassword = function(password) {
+    return bcrypt.compare(password, this.password);
+  }
+  
+  return User;
 }

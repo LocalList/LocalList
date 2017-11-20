@@ -4,7 +4,9 @@ class Home extends React.Component {
     render() {
         return (
             <div>
-                <h1>Sean, build out the home page!</h1>
+                <h3>Search for Jobs near me:</h3>
+                <input type="text" />
+                <button>Go!</button>
             </div>
         )
     }

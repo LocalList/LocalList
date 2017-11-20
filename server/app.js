@@ -2,10 +2,14 @@ const express = require('express');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bodyParser = require('body-parser');
+
 const models = require('./models');
+const router = require('./routes.js');
+
 
 const app = express();
 
+//middleware
 app.use(express.static(__dirname + '/../client'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -37,16 +41,7 @@ passport.use(new LocalStrategy(
   }
 ));
 
-app.post('/login', passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/login.html',
-  session: false
-}));
-
-
-app.get('/', (req, res) => {
-  res.send('hello mars');
-});
+app.use(router);
 
 let port = process.env.PORT || 3000;
 

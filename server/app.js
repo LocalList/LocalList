@@ -26,8 +26,7 @@ passport.use(new LocalStrategy(
         done(null, false, { message: 'Incorrect username.' });
         return;
       }
-
-      console.log(user.username);
+      
       user.validatePassword(password)
       .then(passwordIsMatch => {
         if (passwordIsMatch) {

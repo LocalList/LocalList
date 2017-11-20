@@ -17,15 +17,17 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //refactor to use only promises if possible (remove cb 'done')
+//also maybe move somewhere else
 passport.use(new LocalStrategy(
   function (username, password, done) {
-    models.user.findOne({ username: username })
+    models.user.findOne({ where: { username: username }})
     .then(user => {
       if (!user) {
         done(null, false, { message: 'Incorrect username.' });
         return;
       }
 
+      console.log(user.username);
       user.validatePassword(password)
       .then(passwordIsMatch => {
         if (passwordIsMatch) {

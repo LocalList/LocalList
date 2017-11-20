@@ -13,7 +13,7 @@ router.route('/login')
 
 router.route('/signup')
 .post((req, res) => {
-  controllers.users.post(req, res);
+  controllers.user.post(req, res);
 })
 
 module.exports = router;

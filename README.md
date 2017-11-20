@@ -8,7 +8,6 @@
   - Brandon Hadler
   - Jinxuan Lin
   - Sean Gurson
-  - Test
 
 ## Table of Contents
 
@@ -27,10 +26,7 @@
 ## Requirements
 
 - Node 6.4.x
-- Redis 2.6.x
 - Postgresql 9.1.x
-- etc
-- etc
 
 ## Development
 

@@ -5,14 +5,15 @@ const config = require('../../config/config.js');
 
 let db = {};
 
+let options = {
+  dialect: 'postgres',
+  logging: false
+};
+
 if (process.env.DATABASE_URL) {
-	db.sequelize = new Sequelize(process.env.DATABASE_URL, {
-	  dialect: 'postgres'
-	});
+	db.sequelize = new Sequelize(process.env.DATABASE_URL, options);
 } else {
-	db.sequelize = new Sequelize('locallist', config.development.username, config.development.password, {
-	  dialect: 'postgres'
-	});
+	db.sequelize = new Sequelize('locallist', config.development.username, config.development.password, options);
 }
 
 db.sequelize

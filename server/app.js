@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bodyParser = require('body-parser');
@@ -9,12 +10,18 @@ const router = require('./routes.js');
 
 const app = express();
 
-//middleware
-app.use(express.static(__dirname + '/../client'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(passport.initialize());
-app.use(passport.session());
+//passport sessions
+//refactor with promises
+passport.serializeUser(function (user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function (userId, done) {
+  models.user.findById(userId)
+  .then(user => {
+    done(null, user);
+  });
+});
 
 //refactor to use only promises if possible (remove cb 'done')
 //also maybe move somewhere else
@@ -27,7 +34,6 @@ passport.use(new LocalStrategy(
         return;
       }
 
-      console.log(user.username);
       user.validatePassword(password)
       .then(passwordIsMatch => {
         if (passwordIsMatch) {
@@ -42,6 +48,17 @@ passport.use(new LocalStrategy(
     });
   }
 ));
+
+//middleware
+app.use(express.static(__dirname + '/../client'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session({
+  secret: process.env.SESSION_SECRET || 's3cr3t',
+  secure: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(router);
 

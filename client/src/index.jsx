@@ -14,16 +14,23 @@ class App extends React.Component {
     super(props);
     this.state = {
       user: null,
-      value: ''
+      posterSearch: '',
+      handymanSearch: ''
     }
 
-    this.search = this.search.bind(this);
+    this.posterSearch = this.posterSearch.bind(this);
+    this.handymanSearch = this.handymanSearch.bind(this);
+  }
+
+  posterSearch(e) {
+    this.setState({
+      posterSearch: e.target.value
+    });
   }
     
-  search(e) {
-    console.log('here--->', e.target.value)
+  handymanSearch(e) {
     this.setState({
-      value: e.target.value 
+      handymanSearch: e.target.value 
     });
   }
 
@@ -32,18 +39,7 @@ class App extends React.Component {
       <Router>
         <div>
           <Nav />
-          <div>
-            <h1>Have a job you would like done?</h1>
-            <h3>Enter a location to post your job:</h3>
-            <input type="text" />
-            <button>Go!</button>
-          </div>
-          <div>
-            <h1>Are you a handyman?</h1>
-            <h3>Enter a location to search jobs near you:</h3>
-            <input onChange={this.search} type="text" />
-            <button>Go!</button>
-          </div>
+          <Home posterSearch={this.posterSearch} handymanSearch={this.handymanSearch} />
           <Route path="/signup" component={Signup} />
         </div>
       </Router>

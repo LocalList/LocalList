@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Signup = () => {
+const Login = () => {
     return (
         <div>
-            <form action="/signup" method="post">
+            <form action="/login" method="post">
                 <div>
                     <label>Username:</label>
                     <input type="text" name="username" />
@@ -13,12 +13,11 @@ const Signup = () => {
                     <input type="password" name="password" />
                 </div>
                 <div>
-                    <input type="submit" value="Sign Up" />
+                    <input type="submit" value="Log In" />
                 </div>
             </form>
         </div>
     )
 }
 
-
-module.exports = Signup;
+module.exports = Login;

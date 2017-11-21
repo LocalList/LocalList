@@ -8,6 +8,7 @@ const Router = ReactRouter.BrowserRouter;
 const Route = ReactRouter.Route;
 const Nav = require('./components/Nav.jsx');
 const Signup = require('./components/Signup.jsx');
+import Login from './components/Login.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -39,7 +40,8 @@ class App extends React.Component {
       <Router>
         <div>
           <Nav />
-          <Home posterSearch={this.posterSearch} handymanSearch={this.handymanSearch} />
+          <Route exact path='/' posterSearch={this.posterSearch} handymanSearch={this.handymanSearch} component={Home} />
+          <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
         </div>
       </Router>

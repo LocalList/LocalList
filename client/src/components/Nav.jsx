@@ -5,6 +5,11 @@ const Nav = () => {
     return (
         <ul className="nav">
             <li>
+                <NavLink activeClassName="active" to="/login">
+                    Log in
+                </NavLink>
+            </li>
+            <li>
                 <NavLink activeClassName="active" to="/signup">
                     Sign up
                 </NavLink>

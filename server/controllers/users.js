@@ -7,8 +7,10 @@ module.exports = {
 			res.end('password too short');
 		} else {
 			models.user.create(req.body)
-			.then(thing => {
-				console.log(thing);
+			.then(user => {
+				req.login(user, () => {
+					res.redirect('/');
+				});
 			})
 			.catch(err => {
 				if (err.name === 'SequelizeUniqueConstraintError') {

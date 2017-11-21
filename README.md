@@ -40,6 +40,15 @@ npm install
 bower install
 ```
 
+### Environment
+
+To set up your environoment correctly on your machine, you need to set up PostgreSQL with a database named 'locallist'.
+
+You will also need to export the following environment variables:
+- DB_USERNAME: PSQL user with access to locallist db
+- DB_PASSWORD: Password for the aforementioned user
+- DATABASE_URL: Production/staging only, replaces DB_USERNAME and DB_PASSWORD
+
 ### Roadmap
 
 View the project roadmap [here](LINK_TO_DOC)

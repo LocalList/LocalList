@@ -3,12 +3,62 @@ import renderDom from 'react-dom';
 import Home from './components/Home.jsx';
 
 
-const ReactRouter = require('react-router-dom');
-const Router = ReactRouter.BrowserRouter;
-const Route = ReactRouter.Route;
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter
+} from 'react-router-dom';
 const Nav = require('./components/Nav.jsx');
 const Signup = require('./components/Signup.jsx');
 import Login from './components/Login.jsx';
+
+const auth = {
+  user: null,
+  authenticate(cb) {
+    this.user = {id: 100, username: 'Jin'};
+    setTimeout(cb, 100) // fake async
+  },
+  logout(cb) {
+    this.user = null
+    setTimeout(cb, 100)
+  }
+}
+
+//move to new file
+
+const renderMergedProps = (component, ...rest) => {
+  const finalProps = Object.assign({}, ...rest);
+  return (
+    React.createElement(component, finalProps)
+  );
+}
+
+const PropsRoute = ({ component, ...rest }) => {
+  return (
+    <Route {...rest} render={routeProps => {
+      return renderMergedProps(component, routeProps, rest);
+    }}/>
+  );
+}
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={props => (
+    auth.user ? (
+      <Component {...props}/>
+    ) : (
+      <Redirect to={{
+        pathname: '/login',
+        state: { from: props.location }
+      }}/>
+    )
+  )}/>
+)
+
+const Protected = () => <h3>Protected</h3>
+
+//end
 
 class App extends React.Component {
   constructor(props) {
@@ -41,8 +91,9 @@ class App extends React.Component {
         <div>
           <Nav />
           <Route exact path='/' posterSearch={this.posterSearch} handymanSearch={this.handymanSearch} component={Home} />
-          <Route path="/login" component={Login} />
-          <Route path="/signup" component={Signup} />
+          <PropsRoute path="/login" component={Login} someProp={'hello'} login={() => { auth.authenticate(console.log('logged in')); }}/>
+          <Route path="/signup" component={Signup}/>
+          <PrivateRoute path="/protected" component={Protected}/>
         </div>
       </Router>
     )

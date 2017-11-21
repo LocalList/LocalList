@@ -6,6 +6,7 @@ const Nav = () => {
         <div className="nav">
             <NavLink activeClassName="active" to="/login"><button>Log in</button></NavLink>
             <NavLink activeClassName="active" to="/signup"><button>Sign up</button></NavLink>
+            <NavLink activeClassName="active" to="/protected"><button>Members Only!</button></NavLink>
         </div>
     )
 }

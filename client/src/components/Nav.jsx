@@ -3,18 +3,10 @@ const NavLink = require('react-router-dom').NavLink;
 
 const Nav = () => {
     return (
-        <ul className="nav">
-            <li>
-                <NavLink activeClassName="active" to="/login">
-                    Log in
-                </NavLink>
-            </li>
-            <li>
-                <NavLink activeClassName="active" to="/signup">
-                    Sign up
-                </NavLink>
-            </li>
-        </ul>
+        <div className="nav">
+            <NavLink activeClassName="active" to="/login"><button>Log in</button></NavLink>
+            <NavLink activeClassName="active" to="/signup"><button>Sign up</button></NavLink>
+        </div>
     )
 }
 

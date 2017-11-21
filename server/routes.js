@@ -23,6 +23,12 @@ router.use((req, res, next) => {
 	}
 })
 
+router.route('/logout')
+.get((req, res) => {
+  req.logout();
+  res.redirect('/login.html')
+})
+
 router.route('/members')
 .get((req, res) => {
 	res.writeHead(200);

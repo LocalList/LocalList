@@ -1,8 +1,4 @@
 import React from 'react';
-import renderDom from 'react-dom';
-import Home from './components/Home.jsx';
-
-
 import {
   BrowserRouter as Router,
   Route,
@@ -10,55 +6,20 @@ import {
   Redirect,
   withRouter
 } from 'react-router-dom';
-const Nav = require('./components/Nav.jsx');
-const Signup = require('./components/Signup.jsx');
+import renderDom from 'react-dom';
+import Promise from 'bluebird';
+import axios from 'axios';
+
+import {PropsRoute, PrivateRoute} from './components/RouteHelpers.jsx';
+import Home from './components/Home.jsx';
+import Nav from './components/Nav.jsx';
+import Signup from './components/Signup.jsx';
 import Login from './components/Login.jsx';
 
-const auth = {
-  user: null,
-  authenticate(cb) {
-    this.user = {id: 100, username: 'Jin'};
-    setTimeout(cb, 100) // fake async
-  },
-  logout(cb) {
-    this.user = null
-    setTimeout(cb, 100)
-  }
-}
 
-//move to new file
+//simple page for testing / debugging
+const Protected = (props) => <h3>What is good, {props.user.username}?</h3>
 
-const renderMergedProps = (component, ...rest) => {
-  const finalProps = Object.assign({}, ...rest);
-  return (
-    React.createElement(component, finalProps)
-  );
-}
-
-const PropsRoute = ({ component, ...rest }) => {
-  return (
-    <Route {...rest} render={routeProps => {
-      return renderMergedProps(component, routeProps, rest);
-    }}/>
-  );
-}
-
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={props => (
-    auth.user ? (
-      <Component {...props}/>
-    ) : (
-      <Redirect to={{
-        pathname: '/login',
-        state: { from: props.location }
-      }}/>
-    )
-  )}/>
-)
-
-const Protected = () => <h3>Protected</h3>
-
-//end
 
 class App extends React.Component {
   constructor(props) {
@@ -69,8 +30,65 @@ class App extends React.Component {
       handymanSearch: ''
     }
 
+    this.authenticate();
+
+    this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
+    this.signup = this.signup.bind(this);
     this.posterSearch = this.posterSearch.bind(this);
     this.handymanSearch = this.handymanSearch.bind(this);
+  }
+
+  authenticate() {
+    return axios.get('/api/auth')
+    .then(res => {
+      if (res.data) {
+        this.setState({
+          user: res.data
+        });
+      }
+    })
+  }
+
+  login({ username, password }) {
+    return axios.post('/login', { username, password })
+    .then(res => {
+      this.setState({
+        user: res.data
+      })
+    })
+    .catch(err => {
+      if (err && err.response && (err.response.status === 400 || err.response.status === 401)) {
+        //flash message
+        console.error(err.response.data);
+      } else {
+        throw err;
+      }
+    });
+  }
+
+  logout() {
+    this.setState({
+      user: null
+    })
+    return axios.get('/logout');
+  }
+
+  signup({ username, password }) {
+    return axios.post('/signup', { username, password })
+    .then(res => {
+      this.setState({
+        user: res.data
+      })
+    })
+    .catch(err => {
+      if (err && err.response && (err.response.status === 400)) {
+        //flash message
+        console.error(err.response.data);
+      } else {
+        throw err;
+      }
+    });
   }
 
   posterSearch(e) {
@@ -91,9 +109,10 @@ class App extends React.Component {
         <div>
           <Nav />
           <Route exact path='/' posterSearch={this.posterSearch} handymanSearch={this.handymanSearch} component={Home} />
-          <PropsRoute path="/login" component={Login} someProp={'hello'} login={() => { auth.authenticate(console.log('logged in')); }}/>
-          <Route path="/signup" component={Signup}/>
-          <PrivateRoute path="/protected" component={Protected}/>
+          <PropsRoute path="/login" component={Login} user={this.state.user} login={this.login}/>
+          <PropsRoute path="/signup" component={Signup} user={this.state.user} signup={this.signup}/>
+          <PrivateRoute path="/logout" component={Logout} user={this.state.user} logout={this.logout}/>
+          <PrivateRoute path="/protected" component={Protected} user={this.state.user}/>
         </div>
       </Router>
     )

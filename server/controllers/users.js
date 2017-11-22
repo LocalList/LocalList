@@ -1,4 +1,5 @@
 const models = require('../models');
+const JsonHeaders = { 'Content-Type': 'application/json' };
 
 module.exports = {
 	post: (req, res) => {
@@ -9,7 +10,11 @@ module.exports = {
 			models.user.create(req.body)
 			.then(user => {
 				req.login(user, () => {
-					res.redirect('/');
+					res.writeHead(201, JsonHeaders);
+					res.end(JSON.stringify({
+						id: user.id,
+						username: user.username
+					}))
 				});
 			})
 			.catch(err => {

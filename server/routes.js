@@ -15,6 +15,11 @@ const auth = (req, res, next) => {
   }
 };
 
+const authStub = (req, res, next) => {
+  req.user = req.user || {id: 2};
+  next();
+}
+
 //test, to remove
 router.route('/test')
 .get((req, res) => {
@@ -47,12 +52,14 @@ router.route('/auth')
   res.end(JSON.stringify(user || null));
 })
 
+
 router.route('/jobs')
 .get(controllers.job.getAll)
-.post(controllers.job.post)
+.post(auth, controllers.job.post)
 
 router.route('/jobs/:id')
 .get(controllers.job.getOne)
+
 
 router.route('/logout')
 .get(auth, (req, res) => {

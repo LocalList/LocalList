@@ -26,7 +26,8 @@ module.exports = {
   },
 
   post: (req, res) => {
-    models.job.create(req.body, options)
+    const data = Object.assign({}, req.body, {userId: req.user.id});
+    models.job.create(data, options)
     .then(job => {
       return models.user.findById(job.userId, {
         attributes: ['id', 'username']

@@ -5,6 +5,16 @@ const passport = require('passport');
 const controllers = require('./controllers');
 const JsonHeaders = { 'Content-Type': 'application/json' };
 
+//authorization middleware
+const auth = (req, res, next) => {
+  if (req.user) {
+    next();
+  } else {
+    res.writeHead(401);
+    res.end();
+  }
+};
+
 //test, to remove
 router.route('/test')
 .get((req, res) => {
@@ -37,19 +47,15 @@ router.route('/auth')
   res.end(JSON.stringify(user || null));
 })
 
-//Only signed in users
-router.use((req, res, next) => {
-  console.log('AUTHENTICATING...');
-  if (req.user) {
-    next();
-  } else {
-    res.writeHead(401);
-    res.end();
-  }
-})
+router.route('/jobs')
+.get(controllers.job.getAll)
+.post(controllers.job.post)
+
+router.route('/jobs/:id')
+.get(controllers.job.getOne)
 
 router.route('/logout')
-.get((req, res) => {
+.get(auth, (req, res) => {
   req.logout();
   res.writeHead(204);
   res.end();
@@ -58,7 +64,7 @@ router.route('/logout')
 
 //test, to remove
 router.route('/members')
-.get((req, res) => {
+.get(auth, (req, res) => {
 	res.writeHead(200);
 	res.end(`Welcome, ${req.user.username}!`);
 })

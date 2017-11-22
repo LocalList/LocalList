@@ -12,6 +12,10 @@ module.exports = (db, DataTypes) => {
     password: DataTypes.STRING
   });
 
+  User.associate = (db) => {
+    User.hasMany(db.job, {foreignKey: 'userId'});
+  }
+
   User.beforeCreate((user, options) => {
     return bcrypt.hash(user.password, 10)
     .then(hash => {

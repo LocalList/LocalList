@@ -15,6 +15,7 @@ import Home from './components/Home.jsx';
 import Nav from './components/Nav.jsx';
 import Signup from './components/Signup.jsx';
 import Login from './components/Login.jsx';
+import Logout from './components/Logout.jsx';
 
 
 //simple page for testing / debugging

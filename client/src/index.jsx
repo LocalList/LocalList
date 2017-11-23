@@ -30,8 +30,6 @@ class App extends React.Component {
     super(props);
     this.state = {
       user: null,
-      posterSearch: '',
-      handymanSearch: '',
     };
 
     this.authenticate();
@@ -39,8 +37,6 @@ class App extends React.Component {
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
     this.signup = this.signup.bind(this);
-    this.posterSearch = this.posterSearch.bind(this);
-    this.handymanSearch = this.handymanSearch.bind(this);
   }
 
   authenticate() {
@@ -95,24 +91,12 @@ class App extends React.Component {
       });
   }
 
-  posterSearch(e) {
-    this.setState({
-      posterSearch: e.target.value,
-    });
-  }
-
-  handymanSearch(e) {
-    this.setState({
-      handymanSearch: e.target.value,
-    });
-  }
-
   render() {
     return (
       <Router>
         <div>
           <Nav />
-          <Route exact path="/" posterSearch={this.posterSearch} handymanSearch={this.handymanSearch} component={Home} />
+          <Route exact path="/" component={Home} />
           <Route path="/job/creation" component={CreateJob} />
           <PropsRoute path="/profile" component={Profile} user={this.state.user} />
           <PropsRoute path="/login" component={Login} user={this.state.user} login={this.login} />

@@ -7,7 +7,6 @@ import renderDom from 'react-dom';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-
 import { PropsRoute, PrivateRoute } from './components/RouteHelpers';
 import Home from './components/Home';
 import Nav from './components/Nav';
@@ -89,7 +88,6 @@ class App extends React.Component {
           throw err;
         }
       });
-  }
 
   render() {
     return (

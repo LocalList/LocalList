@@ -2,15 +2,11 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Route,
-  Link,
-  Redirect,
-  withRouter
 } from 'react-router-dom';
 import renderDom from 'react-dom';
-import Promise from 'bluebird';
 import axios from 'axios';
 
-import {PropsRoute, PrivateRoute} from './components/RouteHelpers.jsx';
+import { PropsRoute, PrivateRoute } from './components/RouteHelpers.jsx';
 import Home from './components/Home.jsx';
 import Nav from './components/Nav.jsx';
 import Signup from './components/Signup.jsx';

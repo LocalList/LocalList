@@ -40,6 +40,12 @@ npm install
 bower install
 ```
 
+### Airbnb style guide with ESLint
+#### Sublime:
+Using Package Control:
+- Install SublimeLinter
+- Install SublimeLinter-config-eslint
+
 ### Environment
 
 To set up your environoment correctly on your machine, you need to set up PostgreSQL with a database named 'locallist'.

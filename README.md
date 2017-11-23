@@ -54,6 +54,7 @@ You will also need to export the following environment variables:
 - DB_USERNAME: PSQL user with access to locallist db
 - DB_PASSWORD: Password for the aforementioned user
 - DATABASE_URL: Production/staging only, replaces DB_USERNAME and DB_PASSWORD
+- SESSION_SECRET: Production/staging only, secret sed to encrypt session token
 
 ### Roadmap
 

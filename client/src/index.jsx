@@ -16,6 +16,7 @@ import Nav from './components/Nav.jsx';
 import Signup from './components/Signup.jsx';
 import Login from './components/Login.jsx';
 import Logout from './components/Logout.jsx';
+import CreateJob from './components/CreateJob.jsx';
 
 
 //simple page for testing / debugging
@@ -110,6 +111,7 @@ class App extends React.Component {
         <div>
           <Nav />
           <Route exact path='/' posterSearch={this.posterSearch} handymanSearch={this.handymanSearch} component={Home} />
+          <Route path="/job/creation" component={CreateJob} />
           <PropsRoute path="/login" component={Login} user={this.state.user} login={this.login}/>
           <PropsRoute path="/signup" component={Signup} user={this.state.user} signup={this.signup}/>
           <PrivateRoute path="/logout" component={Logout} user={this.state.user} logout={this.logout}/>

@@ -1,6 +1,7 @@
 import React from 'react';
+import axios from 'axios';
 
-// maybe doesnt have to be a stateful component 
+// maybe doesnt have to be a stateful component
 // could possibly attach this component to JobList
 
 class CreateJob extends React.Component {
@@ -8,7 +9,7 @@ class CreateJob extends React.Component {
     super(props);
     this.state = {
 
-    }
+    };
 
     this.onFormSubmit = this.onFormSubmit.bind(this);
   }
@@ -17,22 +18,21 @@ class CreateJob extends React.Component {
     // stops full refresh of page
     e.preventDefault();
 
-    const job = e.target.job.value;
-
-    if (job) {
-      // add to JobList for that particular location
-    }
+    console.log(e);
   }
 
   render() {
     return (
       <div>
         <form onSubmit={this.onFormSubmit}>
-          <input type="text" name="job"/>
+          Job name:
+          <input type="text" name="name" />
+          Job location:
+          <input type="text" name="location" />
           <button>Post my job</button>
         </form>
       </div>
-    )
+    );
   }
 }
 

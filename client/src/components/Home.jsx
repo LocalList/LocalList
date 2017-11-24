@@ -8,7 +8,6 @@ class Home extends React.Component {
       handymanSearchText: '',
     };
 
-    this.updatePosterSearch = this.updatePosterSearch.bind(this);
     this.updateHandymanSearch = this.updateHandymanSearch.bind(this);
   }
 

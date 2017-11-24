@@ -1,5 +1,5 @@
 import React from 'react';
-import Job from './job.jsx';
+import Job from './Job.jsx';
 
 
 class JobList extends React.Component {

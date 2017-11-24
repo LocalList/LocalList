@@ -10,7 +10,6 @@ class JobList extends React.Component {
     render () {
         return (
             <div>
-                {console.log(this.props.jobs)}
                 {this.props.jobs.map((job) => <Job job={job} key={job.id} />) }
             </div>
         )

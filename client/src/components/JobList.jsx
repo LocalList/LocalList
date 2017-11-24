@@ -16,6 +16,4 @@ class JobList extends React.Component {
   }
 }
 
-// module.exports = JobList;
 export default JobList;
-

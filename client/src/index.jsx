@@ -103,6 +103,7 @@ class App extends React.Component {
           <PropsRoute path="/signup" component={Signup} user={this.state.user} signup={this.signup} />
           <PrivateRoute path="/logout" component={Logout} user={this.state.user} logout={this.logout} />
           <PrivateRoute path="/protected" component={Protected} user={this.state.user} />
+          <PropsRoute path="/profile" component={Profile} user={this.state.user} />
         </div>
       </Router>
     );

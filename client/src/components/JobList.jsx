@@ -1,22 +1,17 @@
 import React from 'react';
-import Job from './job';
-import dummyData from '../dummyData.js';
+import Job from './job.jsx';
 
 
 class JobList extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            jobs: []
-        }
     }
 
     render () {
         return (
             <div>
-                {this.state.jobs.map((job) => {
-                    <Job job={job} key={job.id} />
-                })}
+                {console.log(this.props.jobs)}
+                {this.props.jobs.map((job) => <Job job={job} key={job.id} />) }
             </div>
         )
     }

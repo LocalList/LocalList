@@ -5,12 +5,12 @@ import React from 'react';
 const Job = (props) => {
     return (
         <div>
-            <h2>{props.job.name}</h2>
+            {console.log(props.job)}
+            <h4>{props.job.name}</h4>
             <p>{props.job.location}</p>
             <button>Claim this job!</button>
         </div>
     )
 }
 
-// module.exports = Job;
-export default Job
+export default Job;

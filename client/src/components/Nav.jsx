@@ -9,6 +9,7 @@ const Nav = () => {
             <NavLink activeClassName="active" to="/signup"><button>Sign up</button></NavLink>
             <NavLink activeClassName="active" to="/protected"><button>Members Only!</button></NavLink>
             <NavLink activeClassName="active" to="/job/creation"><button>Create Job</button></NavLink>
+            <NavLink activeClassName="active" to="/profile"><button>Profile</button></NavLink>
         </div>
     )
 }

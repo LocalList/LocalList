@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import JobList from './JobList.jsx'
+import JobList from './JobList.jsx';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -11,27 +11,23 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/api', {
-      params: {
-        userId: this.props.profile.id
-      }
-    })
+    axios.get('/api/jobs')
     .then((jobs) => {
       this.setState({
-        jobs: jobs
+        jobs: jobs.data
       })
     })
     .catch(err => {
       if (err) {
         throw err;
       }
-    }
+    })
   }
 
   render() {
     return (
       <div>
-        <div><strong>User: </strong><span>{this.props.profile.username}</span>
+        <div><strong>User: </strong><span>{this.props.user ? this.props.user.username : 'Jinxuan'}</span>
         <br />
         {/*<strong>Address:</strong><span>{this.props.profile.Address}</span>*/}
         </div>

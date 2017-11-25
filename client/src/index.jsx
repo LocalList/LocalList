@@ -88,6 +88,7 @@ class App extends React.Component {
           throw err;
         }
       });
+  }
 
   render() {
     return (

@@ -5,6 +5,10 @@ const options = {
   include: [{
     model: models.user,
     attributes: ['id', 'username']
+  }, 
+  {
+    association: 'doer',
+    attributes: ['id', 'username']
   }]
 }
 

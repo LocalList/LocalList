@@ -9,11 +9,13 @@ module.exports = (db, DataTypes) => {
     },
     name: DataTypes.STRING,
     location: DataTypes.STRING,
-    userId: DataTypes.INTEGER
+    userId: DataTypes.INTEGER,
+    doerId: DataTypes.INTEGER,
   })
 
   Job.associate = (db) => {
     Job.belongsTo(db.user);
+    Job.belongsTo(db.user, { as: 'doer' });
   }
 
   return Job;

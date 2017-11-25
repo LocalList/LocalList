@@ -45,5 +45,19 @@ module.exports = {
       res.writeHead(201, JsonHeaders);
       res.end(JSON.stringify(job));
     })
-  }
-}
+  },
+
+  claim: (req, res) => {
+    console.log('user:', req.user);
+    if (!req.user) {
+      res.writeHead(401);
+      res.end();
+    } else {
+      models.job.update({ doerId: req.user.id }, { where: { id: req.params.id }, returning: true })
+        .then((result) => {
+          res.writeHead(200);
+          res.end(JSON.stringify(result[1][0]));
+        });
+    }
+  },
+};

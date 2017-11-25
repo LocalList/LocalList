@@ -1,6 +1,6 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import axios from 'axios';
+import { NavLink } from 'react-router-dom';
 import JobList from './JobList';
 
 class Home extends React.Component {

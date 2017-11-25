@@ -36,17 +36,10 @@ class CreateJob extends React.Component {
       });
   }
 
-<<<<<<< 4de55b5370ef5557645dea4f7257dfe0cd7fba92
   updateState(e) {
     this.setState({
       [e.target.name]: e.target.value,
     });
-=======
-    if (job) {
-      // push to jobs in JobList for that particular location
-      // e.target.job.value = '';
-    }
->>>>>>> add create job
   }
 
   render() {

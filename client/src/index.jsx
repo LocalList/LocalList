@@ -18,6 +18,7 @@ import Login from './components/Login.jsx';
 import Logout from './components/Logout.jsx';
 import CreateJob from './components/CreateJob.jsx';
 import Profile from './components/Profile.jsx';
+import Jobs from './components/Jobs.jsx';
 
 //simple page for testing / debugging
 const Protected = (props) => <h3>What is good, {props.user.username}?</h3>
@@ -29,7 +30,8 @@ class App extends React.Component {
     this.state = {
       user: null,
       posterSearch: '',
-      handymanSearch: ''
+      handymanSearch: '',
+      jobs: []
     }
 
     this.authenticate();
@@ -37,8 +39,7 @@ class App extends React.Component {
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
     this.signup = this.signup.bind(this);
-    this.posterSearch = this.posterSearch.bind(this);
-    this.handymanSearch = this.handymanSearch.bind(this);
+    this.handleHandyClick = this.handleHandyClick.bind(this);
   }
 
   authenticate() {
@@ -93,16 +94,20 @@ class App extends React.Component {
     });
   }
 
-  posterSearch(e) {
-    this.setState({
-      posterSearch: e.target.value
-    });
-  }
-    
-  handymanSearch(e) {
-    this.setState({
-      handymanSearch: e.target.value 
-    });
+  handleHandyClick(i) {
+
+    axios.get(`/api/locjobs/${i}`)
+    .then((jobs) => {
+      console.log(jobs.data);
+      this.setState({
+        jobs: jobs.data
+      });
+    })
+    .catch(err => {
+      if (err) {
+        throw err;
+      }
+    })    
   }
 
   render () {
@@ -110,8 +115,9 @@ class App extends React.Component {
       <Router>
         <div>
           <Nav />
-          <Route exact path='/' posterSearch={this.posterSearch} handymanSearch={this.handymanSearch} component={Home} />
+          <PropsRoute exact path='/' handleHandyClick={this.handleHandyClick} component={Home} />
           <Route path="/job/creation" component={CreateJob} />
+          <PropsRoute path="/jobs" component={Jobs} jobs={this.state.jobs} />
           <PropsRoute path="/profile" component={Profile} user={this.state.user} />
           <PropsRoute path="/login" component={Login} user={this.state.user} login={this.login}/>
           <PropsRoute path="/signup" component={Signup} user={this.state.user} signup={this.signup}/>

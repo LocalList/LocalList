@@ -18,7 +18,7 @@ module.exports = {
   },
 
   getAll: (req, res) => {
-    models.job.findAll({ where: req.query, limit: 10 })
+    models.job.findAll({ where: req.params, limit: 10 })
     .then(jobs => {
       res.writeHead(200);
       res.end(JSON.stringify(jobs));

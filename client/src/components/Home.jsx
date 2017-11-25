@@ -1,4 +1,6 @@
 import React from 'react';
+import JobList from './JobList.jsx';
+import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 
 class Home extends React.Component {
@@ -6,9 +8,12 @@ class Home extends React.Component {
     super(props);
     this.state = {
       handymanSearchText: '',
+      redirect: false,
+      jobs: [],
     };
 
     this.updateHandymanSearch = this.updateHandymanSearch.bind(this);
+    this.handymanSearch = this.handymanSearch.bind(this);
   }
 
   updateHandymanSearch(e) {
@@ -18,25 +23,39 @@ class Home extends React.Component {
   }
 
   handymanSearch() {
-    // TODO
+    axios.get(`/api/jobs?location=${this.state.handymanSearchText}`)
+      .then((res) => {
+        this.setState({
+          jobs: res.data,
+          redirect: !this.state.redirect,
+        });
+      });
   }
 
   render() {
-    return (
-      <div>
-        <h1>Local List</h1>
+    if (this.state.redirect) {
+      return (
         <div>
-          <h3>Have a job you would like done?</h3>
-          <NavLink activeClassName="active" to="/jobs/create"><button>Post a Job</button></NavLink>
+          <JobList jobs={this.state.jobs} />
         </div>
+      );
+    } else {
+      return (
         <div>
-          <h3>Are you a handyman?</h3>
-          <h5>Enter a location to search jobs near you:</h5>
-          <input onChange={this.updateHandymanSearch} type="text" />
-          <button onClick={this.handymanSearch}>Go!</button>
+          <h1>Local List</h1>
+          <div>
+            <h3>Have a job you would like done?</h3>
+            {<NavLink activeClassName="active" to="/jobs/create"><button>Post a Job</button></NavLink>}
+          </div>
+          <div>
+            <h3>Are you a handyman?</h3>
+            <h5>Enter a location to search jobs near you:</h5>
+            <input onChange={this.updateHandymanSearch} type="text" />
+            <button onClick={this.handymanSearch}>Go!</button>
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 

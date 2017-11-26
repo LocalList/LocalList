@@ -11,6 +11,7 @@ const Nav = () => {
       <NavLink activeClassName="active" to="/profile"><button>Profile</button></NavLink>
       <NavLink activeClassName="active" to="/jobs/create"><button>Create Job</button></NavLink>
       <NavLink activeClassName="active" to="/profile"><button>Profile</button></NavLink>
+      <NavLink activeClassName="active" to="/jobs/2"><button>Job #2 (test)</button></NavLink>
     </div>
   )
 }

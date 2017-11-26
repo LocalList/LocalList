@@ -7,6 +7,7 @@ class Profile extends React.Component {
     super(props);
     this.state = {
       jobs: [],
+      averageRating: 0,
     };
   }
 
@@ -22,6 +23,13 @@ class Profile extends React.Component {
         throw err;
       }
     })
+
+    axios.get(`/api/reviews?doerId=${this.props.user.id}`)
+      .then((response) => {
+        this.setState({
+          averageRating: response.data.averageRating,
+        });
+      });
   }
 
   render() {
@@ -30,6 +38,7 @@ class Profile extends React.Component {
         <div><strong>User: </strong><span>{this.props.user ? this.props.user.username : 'Jinxuan'}</span>
         <br />
         {/*<strong>Address:</strong><span>{this.props.profile.Address}</span>*/}
+        <div>{this.state.averageRating === null ? 'No rating yet!' : `Rating: ${this.state.averageRating}` }</div>
         </div>
         <h3>Jobs that you have claimed on or done so far:</h3>
           {/*list all jobs that had been completed or claimed by user

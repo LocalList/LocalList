@@ -14,11 +14,14 @@ module.exports = {
         }],
       })
         .then((reviews) => {
-          const averageRating =
-          reviews
-            .map(review => review.rating)
-            .reduce((sum, rating) => sum + rating)
-            / reviews.length;
+          let averageRating = null;
+          if (reviews.length > 0) {
+            averageRating =
+            reviews
+              .map(review => review.rating)
+              .reduce((sum, rating) => sum + rating)
+              / reviews.length;
+          }
 
           res.writeHead(200, JsonHeaders);
           res.end(JSON.stringify({ averageRating, reviews }));
@@ -35,6 +38,13 @@ module.exports = {
         .then((job) => {
           if (job.userId === req.user.id) {
             models.review.create(req.body)
+              .then((review) => {
+                return models.job.findById(review.jobId)
+                  .then((job) => {
+                    review.dataValues.job = job;
+                    return review;
+                  });
+              })
               .then((review) => {
                 res.writeHead(201);
                 res.end(JSON.stringify(review));

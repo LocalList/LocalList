@@ -15,6 +15,7 @@ import Login from './components/Login';
 import Logout from './components/Logout';
 import CreateJob from './components/CreateJob';
 import Profile from './components/Profile';
+import JobDetails from './components/JobDetails';
 
 // simple page for testing / debugging
 const Protected = props => <h3>What is good, {props.user.username}?</h3>;
@@ -103,6 +104,7 @@ class App extends React.Component {
           <PrivateRoute path="/logout" component={Logout} user={this.state.user} logout={this.logout} />
           <PrivateRoute path="/protected" component={Protected} user={this.state.user} />
           <PropsRoute path="/profile" component={Profile} user={this.state.user} />
+          <PropsRoute path="/jobs/:id" component={JobDetails} user={this.state.user} />
         </div>
       </Router>
     );

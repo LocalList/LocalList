@@ -9,6 +9,8 @@ const options = {
   {
     association: 'doer',
     attributes: ['id', 'username']
+  }, {
+    model: models.review,
   }]
 }
 

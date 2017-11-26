@@ -1,5 +1,5 @@
 module.exports = (db, DataTypes) => {
-  const Review = db.define('job', {
+  const Review = db.define('review', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,

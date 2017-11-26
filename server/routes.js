@@ -63,6 +63,10 @@ router.route('/jobs/:id')
 router.route('/jobs/:id/claim')
 .get(controllers.job.claim)
 
+router.route('/reviews')
+.get(controllers.review.get)
+.post(auth, controllers.review.post);
+
 
 router.route('/logout')
 .get(auth, (req, res) => {

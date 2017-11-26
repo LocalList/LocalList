@@ -12,8 +12,26 @@ class Home extends React.Component {
       jobs: [],
     };
 
+    this.onClaimed = this.onClaimed.bind(this);
     this.updateHandymanSearch = this.updateHandymanSearch.bind(this);
     this.handymanSearch = this.handymanSearch.bind(this);
+  }
+
+  onClaimed(job) {
+    // remove job from jobs array
+    job.claimed = true;
+
+    let updatedJobs = this.state.jobs.slice(0);
+
+    updatedJobs.forEach((job, index) => {
+      if (job.claimed === true) {
+        updatedJobs.splice(index, 1);
+      }
+    })
+
+    this.setState({
+      jobs: updatedJobs
+    });
   }
 
   updateHandymanSearch(e) {
@@ -36,7 +54,7 @@ class Home extends React.Component {
     if (this.state.redirect) {
       return (
         <div>
-          <JobList jobs={this.state.jobs} />
+          <JobList onClaimed={this.onClaimed} jobs={this.state.jobs} />
         </div>
       );
     } else {

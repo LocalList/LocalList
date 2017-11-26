@@ -9,7 +9,7 @@ class JobList extends React.Component {
   render () {
     return (
       <div>
-        {this.props.jobs.map((job) => <Job onClaimed={onClaimed} job={job} key={job.id} />) }
+        {this.props.jobs.map((job) => <Job onClaimed={this.props.onClaimed} job={job} key={job.id} />) }
       </div>
     )
   }

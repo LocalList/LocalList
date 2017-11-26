@@ -19,12 +19,10 @@ class Home extends React.Component {
 
   onClaimed(job) {
     // remove job from jobs array
-    job.claimed = true;
-
     let updatedJobs = this.state.jobs.slice(0);
 
-    updatedJobs.forEach((job, index) => {
-      if (job.claimed === true) {
+    updatedJobs.forEach((updatedJob, index) => {
+      if (job.id === updatedJob.id) {
         updatedJobs.splice(index, 1);
       }
     })

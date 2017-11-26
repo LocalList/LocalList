@@ -63,7 +63,7 @@ app.use(passport.session());
 app.use('/api', router);
 
 app.all('/*', (req, res) => {
-  res.sendFile('/index.html', {root: './client'});
+  res.redirect('/');
 })
 
 let port = process.env.PORT || 3000;

@@ -98,7 +98,7 @@ class App extends React.Component {
           <Nav />
           <Route exact path="/" component={Home} />
           <PropsRoute path="/profile" component={Profile} user={this.state.user} />
-          <PrivateRoute path="/jobs/create" component={CreateJob} user={this.state.user} />
+          <PrivateRoute path="/create-job" component={CreateJob} user={this.state.user} />
           <PropsRoute path="/login" component={Login} user={this.state.user} login={this.login} />
           <PropsRoute path="/signup" component={Signup} user={this.state.user} signup={this.signup} />
           <PrivateRoute path="/logout" component={Logout} user={this.state.user} logout={this.logout} />

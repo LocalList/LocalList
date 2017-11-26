@@ -16,6 +16,7 @@ module.exports = (db, DataTypes) => {
   Job.associate = (db) => {
     Job.belongsTo(db.user);
     Job.belongsTo(db.user, { as: 'doer' });
+    Job.hasOne(db.review);
   }
 
   return Job;

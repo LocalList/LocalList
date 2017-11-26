@@ -16,6 +16,7 @@ module.exports = {
           model: 'jobs',
           key: 'id',
         },
+        unique: true,
       },
       rating: {
         type: Sequelize.INTEGER,

@@ -58,5 +58,4 @@ class CreateJob extends React.Component {
   }
 }
 
-
 module.exports = CreateJob;

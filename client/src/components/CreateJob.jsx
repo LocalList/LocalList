@@ -61,4 +61,5 @@ CreateJob.propTypes = {
   user: PropTypes.shape({ id: PropTypes.number.isRequired }).isRequired,
 };
 
+
 export default CreateJob;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class Signup extends React.Component {
   constructor(props) {
@@ -7,41 +8,54 @@ class Signup extends React.Component {
     this.state = {
       username: '',
       password: '',
-    }
+    };
 
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(e) {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   }
 
   render() {
     if (this.props.user) {
       return (
-        <Redirect to={{pathname: '/'}}/>
+        <Redirect to={{ pathname: '/' }} />
       );
     }
 
     return (
       <div>
-        {`Prop: ${this.props.someProp}`}
         <div>
-          <label>Username:</label>
-          <input type="text" name="username" onChange={this.handleChange}/>
+          Username:
+          <input type="text" name="username" onChange={this.handleChange} />
         </div>
         <div>
-          <label>Password:</label>
-          <input type="password" name="password" onChange={this.handleChange}/>
+          Password:
+          <input type="password" name="password" onChange={this.handleChange} />
         </div>
         <div>
-          <button onClick={() => {this.props.signup(this.state)}}>Sign Up</button>
+          <button
+            onClick={() => {
+              this.props.signup({
+                usernme: this.state.username,
+                password: this.state.password,
+              });
+            }}
+          >
+          Sign Up
+          </button>
         </div>
       </div>
     );
   }
 }
+
+Signup.propTypes = {
+  user: PropTypes.shape({}).isRequired,
+  signup: PropTypes.func.isRequired,
+};
 
 export default Signup;

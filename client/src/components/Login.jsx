@@ -28,7 +28,6 @@ class Login extends React.Component {
 
     return (
       <div>
-        {`Prop: ${this.props.someProp}`}
         <div>
           <label>Username:</label>
           <input type="text" name="username" onChange={this.handleChange}/>

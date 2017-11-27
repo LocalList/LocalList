@@ -3,6 +3,25 @@ const models = require('../models');
 const JsonHeaders = { 'Content-Type': 'application/json' };
 
 module.exports = {
+  get: (req, res) => {
+    models.user.findById(req.params.id, {
+      include: [{
+        association: 'jobs',
+        include: {
+          model: models.user,
+          attributes: ['username'],
+        },
+      }, {
+        association: 'claimedJobs',
+      }],
+      attributes: ['id', 'username', 'createdAt'],
+    })
+      .then((user) => {
+        res.writeHead(200, JsonHeaders);
+        res.end(JSON.stringify(user));
+      });
+  },
+
   post: (req, res) => {
     if (req.body.password.length < 6) {
       res.writeHead(400);

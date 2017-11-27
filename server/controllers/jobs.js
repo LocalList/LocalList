@@ -25,10 +25,21 @@ module.exports = {
   },
 
   getAll: (req, res) => {
-    models.job.findAll({ where: req.query, limit: 10 })
+    models.job.findAll({
+      where: req.query,
+      limit: 10,
+      include: {
+        model: models.user,
+        attributes: ['username'],
+      },
+    })
       .then((jobs) => {
-        res.writeHead(200);
+        res.writeHead(200, JsonHeaders);
         res.end(JSON.stringify(jobs));
+      })
+      .catch(() => {
+        res.writeHead(400);
+        res.end();
       });
   },
 
@@ -66,15 +77,10 @@ module.exports = {
   },
 
   claim: (req, res) => {
-    if (!req.user) {
-      res.writeHead(401);
-      res.end();
-    } else {
-      models.job.update({ doerId: req.user.id }, { where: { id: req.params.id }, returning: true })
-        .then((result) => {
-          res.writeHead(200);
-          res.end(JSON.stringify(result[1][0]));
-        });
-    }
+    models.job.update({ doerId: req.user.id }, { where: { id: req.params.id }, returning: true })
+      .then((result) => {
+        res.writeHead(200);
+        res.end(JSON.stringify(result[1][0]));
+      });
   },
 };

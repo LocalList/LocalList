@@ -50,7 +50,7 @@ router.route('/jobs/:id')
   .put(auth, controllers.job.markCom);
 
 router.route('/jobs/:id/claim')
-  .get(controllers.job.claim);
+  .get(auth, controllers.job.claim);
 
 router.route('/reviews')
   .get(controllers.review.get)

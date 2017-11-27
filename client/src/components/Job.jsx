@@ -6,7 +6,6 @@ import MarkButton from './MarkButton';
 
 const Job = props => (
   <div>
-    {console.log(props.job)}
     <NavLink activeClassName="active" to={`/jobs/${props.job.id}`}>
       <h4>{props.job.name}</h4>
     </NavLink>

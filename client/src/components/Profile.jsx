@@ -11,6 +11,8 @@ class Profile extends React.Component {
       user: null,
       averageRating: 0,
     };
+
+    this.onClaimed = this.onClaimed.bind(this);
   }
 
   componentDidMount() {
@@ -22,6 +24,24 @@ class Profile extends React.Component {
       .then((response) => {
         this.setState({
           averageRating: response.data.averageRating,
+        });
+      });
+  }
+
+  onClaimed(claimedJob) {
+    // remove job from jobs array
+    axios.get(`/api/jobs/${claimedJob.id}/claim`)
+      .then(() => {
+
+        this.setState((prevState) => {
+          prevState.user.jobs.forEach((job, index) => {
+            if (job.id === claimedJob.id) {
+              job.doerId = this.props.user.id;
+            }
+          });
+          return {
+            user: prevState.user,
+          };
         });
       });
   }
@@ -49,7 +69,7 @@ class Profile extends React.Component {
             <JobList user={this.props.user} jobs={this.state.user.claimedJobs} />
           </Panel>
           <Panel header="Jobs that you have posted">
-            <JobList user={this.props.user} jobs={this.state.user.jobs} />
+            <JobList user={this.props.user} jobs={this.state.user.jobs} onClaimed={this.onClaimed} />
           </Panel>
         </div>
       );

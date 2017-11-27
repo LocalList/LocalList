@@ -19,6 +19,8 @@ class Home extends React.Component {
 
   onClaimed(job) {
     // remove job from jobs array
+    // axios.get('/jobs/:id/claim')
+
     const updatedJobs = this.state.jobs.slice(0);
 
     updatedJobs.forEach((updatedJob, index) => {

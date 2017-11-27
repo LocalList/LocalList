@@ -59,8 +59,6 @@ router.route('/jobs')
 
 router.route('/jobs/:id')
 .get(controllers.job.getOne)
-
-router.route('/jobs/:id/:doerId')
 .put(auth, controllers.job.markCom)
 
 router.route('/jobs/:id/claim')

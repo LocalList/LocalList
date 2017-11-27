@@ -50,17 +50,20 @@ module.exports = {
   },
 
   markCom: (req, res) => {
-    console.log(req.params);
-    if (req.user.attributes.id === req.params.doerId) {
-      res.write(403);
-      res.end();
-    } else {
-      models.job.update({ complete: true }, { where: { id: req.params.id }, returning: true })
-        .then((result) => {
-          res.writeHead(200);
-          res.end(JSON.stringify(result[1][0]));
-        });
-    }
+    models.job.findById(req.params.id, options)
+      .then(job => job.dataValues.doerId)
+      .then((doerId) => {
+        if (req.user.attributes.id === doerId) {
+          res.write(403);
+          res.end();
+        } else {
+          models.job.update({ complete: true }, { where: { id: req.params.id }, returning: true })
+            .then((result) => {
+              res.writeHead(200);
+              res.end(JSON.stringify(result[1][0]));
+            });
+        }
+      });
   },
 
   claim: (req, res) => {

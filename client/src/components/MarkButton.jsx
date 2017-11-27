@@ -13,7 +13,7 @@ class MarkButton extends React.Component {
   }
 
   handlerClick() {
-    axios.put(`/api/jobs/${this.props.job.id}/${this.props.job.doerId}`)
+    axios.put(`/api/jobs/${this.props.job.id}`)
       .then ((res) => {
         this.setState({
           job: res.data,

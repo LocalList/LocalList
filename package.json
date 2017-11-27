@@ -25,6 +25,7 @@
     "bcrypt": "^1.0.3",
     "bluebird": "^3.5.1",
     "body": "^5.1.0",
+    "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "history": "^1.17.0",

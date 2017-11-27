@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const Nav = () => (
+const Nav = props => (
   <div className="navbar navbar-toggleable-md navbar-light bg-faded" role="navigation">
     <NavLink activeClassName="active" to="/"><button className="btn btn-outline-secondary">Home</button></NavLink>
     <NavLink activeClassName="active" to="/login"><button className="btn btn-outline-secondary">Log in</button></NavLink>

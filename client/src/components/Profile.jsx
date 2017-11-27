@@ -33,10 +33,6 @@ class Profile extends React.Component {
   }
 
   render() {
-    if (this.props.user === null) {
-      return <Redirect to={{ pathname: '/login' }} />;
-    }
-
     if (this.state.user) {
       return (
         <div>

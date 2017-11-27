@@ -17,19 +17,11 @@ class Profile extends React.Component {
     if (this.props.user) {
       axios.get('/api/jobs')
         .then((jobs) => {
-          let doerJobs = jobs.data.filter(job => {
-            return job.doerId === this.props.user.id;
-          });
-          let posterJobs = jobs.data.filter(job => {
-            return job.userId === this.props.user.id;
-          });
-
-          this.setState({
-            doerJobs: doerJobs,
-            posterJobs: posterJobs,
-          });
+          const doerJobs = jobs.data.filter(job => job.doerId === this.props.user.id);
+          const posterJobs = jobs.data.filter(job => job.userId === this.props.user.id);
+          this.setState({ doerJobs, posterJobs });
         })
-        .catch(err => {
+        .catch((err) => {
           if (err) {
             throw err;
           }
@@ -46,14 +38,14 @@ class Profile extends React.Component {
 
   render() {
     if (this.props.user === null) {
-      return <Redirect to={{ pathname: '/login' }} />
+      return <Redirect to={{ pathname: '/login' }} />;
     }
     return (
       <div>
-        <div><strong>User: </strong><span>{this.props.user ? this.props.user.username : 'Jinxuan'}</span>
-        <br />
-        {/*<strong>Address:</strong><span>{this.props.profile.Address}</span>*/}
-        <div>{this.state.averageRating === null ? 'No rating yet!' : `Rating: ${this.state.averageRating}` }</div>
+        <div>
+          <strong>User: </strong><span>{this.props.user ? this.props.user.username : 'Jinxuan'}</span>
+          <br />
+          <div>{this.state.averageRating === null ? 'No rating yet!' : `Rating: ${this.state.averageRating}` }</div>
         </div>
         <h3>Jobs that you have claimed on or done so far:</h3>
         <JobList user={this.props.user} jobs={this.state.doerJobs} />
@@ -61,7 +53,7 @@ class Profile extends React.Component {
         <h3>Jobs that you have posted</h3>
         <JobList user={this.props.user} jobs={this.state.posterJobs} />
       </div>
-    )
+    );
   }
 }
 

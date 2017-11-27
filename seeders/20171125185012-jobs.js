@@ -8,28 +8,33 @@ module.exports = {
       location: 'San Fransisco',
       userId: 1,
       doerId: null,
+      complete: false,
     }, {
       name: 'rake leaves',
       location: 'San Fransisco',
       userId: 1,
       doerId: 2,
+      complete: true,
     }, {
       name: 'walk my dog',
       location: 'Los Angeles',
       userId: 3,
       doerId: 4,
+      complete: true,
     },
     {
       name: 'make me a sandwich',
       location: 'Los Angles',
       userId: 2,
       doerId: null,
+      complete: false,
     },
     {
       name: 'clean my room',
       location: 'Danville',
       userId: 1,
       doerId: null,
+      complete: false,
     }]);
   },
 

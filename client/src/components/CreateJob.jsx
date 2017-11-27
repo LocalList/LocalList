@@ -56,4 +56,8 @@ class CreateJob extends React.Component {
   }
 }
 
+CreateJob.propTypes = {
+  user: React.PropTypes.object.isRequired,
+}
+
 export default CreateJob;

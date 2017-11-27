@@ -57,7 +57,7 @@ class CreateJob extends React.Component {
 }
 
 CreateJob.propTypes = {
-  user: React.PropTypes.object.isRequired,
-}
+  user: React.PropTypes.shape({ id: React.PropTypes.number }).isRequired,
+};
 
 export default CreateJob;

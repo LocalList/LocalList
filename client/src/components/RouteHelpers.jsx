@@ -32,4 +32,4 @@ const PrivateRoute = ({ component, user, ...rest }) => (
   )}/>
 )
 
-module.exports = {PropsRoute, PrivateRoute};
+export { PropsRoute, PrivateRoute };

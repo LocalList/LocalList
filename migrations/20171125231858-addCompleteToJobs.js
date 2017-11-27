@@ -5,10 +5,10 @@ module.exports = {
     queryInterface.addColumn('jobs', 'complete', {
       type: Sequelize.BOOLEAN,
       defaultValue: false,
-    })
+    });
   },
 
   down: (queryInterface, Sequelize) => {
-    queryInterface.removeColumn('jobs', 'complete')
-  }
+    queryInterface.removeColumn('jobs', 'complete');
+  },
 };

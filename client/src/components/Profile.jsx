@@ -37,7 +37,7 @@ class Profile extends React.Component {
       return (
         <div>
           <div>
-            <strong>User: </strong><span>{this.props.user ? this.props.user.username : 'Jinxuan'}</span>
+            <strong>User: </strong><span>{this.state.user.username}</span>
             <br />
             <div>{this.state.averageRating === null ? 'No rating yet!' : `Rating: ${this.state.averageRating}` }</div>
           </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import { Panel, ListGroup, ListGroupItem } from 'react-bootstrap';
 import JobList from './JobList';
 
 class Profile extends React.Component {
@@ -35,21 +36,23 @@ class Profile extends React.Component {
   render() {
     if (this.state.user) {
       return (
-        <div>
-          <div>
-            <strong>User: </strong><span>{this.state.user.username}</span>
-            <br />
-            <div>{this.state.averageRating === null ? 'No rating yet!' : `Rating: ${this.state.averageRating}` }</div>
-          </div>
-          <h3>Jobs that you have claimed or done so far:</h3>
-          <JobList user={this.props.user} jobs={this.state.user.claimedJobs} />
-
-          <h3>Jobs that you have posted</h3>
-          <JobList user={this.props.user} jobs={this.state.user.jobs} />
+        <div className="container">
+          <ListGroup>
+            <ListGroupItem bsStyle="info">
+              <strong>User: </strong><span>{this.state.user.username}</span>
+              <br />
+              <div>{this.state.averageRating === null ? 'No rating yet!' : `Rating: ${this.state.averageRating}` }</div>
+            </ListGroupItem>
+          </ListGroup>
+          <Panel header={'Jobs that you have claimed on or done so far:'}>
+            <JobList user={this.props.user} jobs={this.state.user.claimedJobs} />
+          </Panel>
+          <Panel header="Jobs that you have posted">
+            <JobList user={this.props.user} jobs={this.state.user.jobs} />
+          </Panel>
         </div>
       );
     }
-
     return (
       'Loading...'
     );

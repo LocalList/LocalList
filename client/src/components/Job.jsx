@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Button } from 'react-bootstrap';
 import MarkButton from './MarkButton';
 
 const Job = props => (
@@ -16,7 +17,7 @@ const Job = props => (
     </h5>
     <p>{props.job.location}</p>
     { !props.job.doerId && props.user && props.user.id !== props.job.userId &&
-      <button onClick={() => { props.onClaimed(props.job); }}>Claim this job!</button> }
+      <Button bsStyle="primary" onClick={() => {props.onClaimed(props.job)}}>Claim this job!</Button> }
     <MarkButton user={props.user} job={props.job} />
   </div>
 );

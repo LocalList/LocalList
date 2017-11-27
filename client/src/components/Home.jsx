@@ -1,7 +1,7 @@
 import React from 'react';
-import JobList from './JobList.jsx';
-import axios from 'axios';
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
+import JobList from './JobList';
 
 class Home extends React.Component {
   constructor(props) {
@@ -19,16 +19,16 @@ class Home extends React.Component {
 
   onClaimed(job) {
     // remove job from jobs array
-    let updatedJobs = this.state.jobs.slice(0);
+    const updatedJobs = this.state.jobs.slice(0);
 
     updatedJobs.forEach((updatedJob, index) => {
       if (job.id === updatedJob.id) {
         updatedJobs.splice(index, 1);
       }
-    })
+    });
 
     this.setState({
-      jobs: updatedJobs
+      jobs: updatedJobs,
     });
   }
 

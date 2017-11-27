@@ -1,18 +1,10 @@
 import React from 'react';
-import Job from './Job.jsx';
+import Job from './Job';
 
-class JobList extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render () {
-    return (
-      <div>
-        {this.props.jobs.map((job) => <Job user={this.props.user} onClaimed={this.props.onClaimed} job={job} key={job.id} />) }
-      </div>
-    )
-  }
-}
+const JobList = props => (
+  <div>
+    {props.jobs.map(job => <Job user={props.user} onClaimed={props.onClaimed} job={job} key={job.id} />) }
+  </div>
+);
 
 export default JobList;

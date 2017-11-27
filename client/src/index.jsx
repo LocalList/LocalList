@@ -17,13 +17,6 @@ import CreateJob from './components/CreateJob';
 import Profile from './components/Profile';
 import JobDetails from './components/JobDetails';
 
-// simple page for testing / debugging
-const Protected = props => <h3>What is good, {props.user.username}?</h3>;
-Protected.propTypes = {
-  user: PropTypes.shape({
-    username: PropTypes.string.isRequired,
-  }).isRequired,
-};
 
 class App extends React.Component {
   constructor(props) {
@@ -102,7 +95,6 @@ class App extends React.Component {
           <PropsRoute path="/login" component={Login} user={this.state.user} login={this.login} />
           <PropsRoute path="/signup" component={Signup} user={this.state.user} signup={this.signup} />
           <PrivateRoute path="/logout" component={Logout} user={this.state.user} logout={this.logout} />
-          <PrivateRoute path="/protected" component={Protected} user={this.state.user} />
           <PropsRoute path="/jobs/:id" component={JobDetails} user={this.state.user} />
         </div>
       </Router>

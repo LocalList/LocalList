@@ -27,7 +27,7 @@ class Login extends React.Component {
     }
 
     return (
-      <div>
+      <div className="container">
         <div>
           <label>Username:</label>
           <input type="text" name="username" onChange={this.handleChange}/>

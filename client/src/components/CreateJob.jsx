@@ -22,8 +22,6 @@ class CreateJob extends React.Component {
     // stops full refresh of page
     e.preventDefault();
 
-    console.log(this.props.user.id);
-
     axios.post('/api/jobs', {
       name: this.state.name,
       location: this.state.location,
@@ -58,4 +56,4 @@ class CreateJob extends React.Component {
   }
 }
 
-module.exports = CreateJob;
+export default CreateJob;

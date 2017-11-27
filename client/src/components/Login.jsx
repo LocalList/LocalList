@@ -1,7 +1,5 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import dummyData from '../dummyData.js';
-import Profile from './Profile.jsx'
 
 
 class Login extends React.Component {
@@ -47,4 +45,4 @@ class Login extends React.Component {
   }
 }
 
-module.exports = Login;
+export default Login;

@@ -16,6 +16,14 @@ module.exports = {
     {
       username: 'Sean',
       password: 'password',
+    },
+    {
+      username: 'Kirk',
+      password: 'password',
+    },
+    {
+      username: 'Tom',
+      password: 'password',
     }], { individualHooks: true });
   },
 

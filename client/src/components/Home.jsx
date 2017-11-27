@@ -46,7 +46,7 @@ class Home extends React.Component {
     axios.get(`/api/jobs?location=${this.state.handymanSearchText}`)
       .then((res) => {
         this.setState({
-          jobs: res.data,
+          jobs: res.data.filter(job => !job.doerId),
           redirect: !this.state.redirect,
         });
       });

@@ -1,6 +1,6 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import axios from 'axios';
+import { NavLink } from 'react-router-dom';
 import JobList from './JobList';
 
 class Home extends React.Component {
@@ -52,7 +52,7 @@ class Home extends React.Component {
     if (this.state.redirect) {
       return (
         <div>
-          <JobList onClaimed={this.onClaimed} jobs={this.state.jobs} />
+          <JobList onClaimed={this.onClaimed} jobs={this.state.jobs} user={this.props.user} />
         </div>
       );
     } else {

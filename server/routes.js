@@ -59,6 +59,7 @@ router.route('/jobs')
 
 router.route('/jobs/:id')
 .get(controllers.job.getOne)
+.put(auth, controllers.job.markCom)
 
 router.route('/jobs/:id/claim')
 .get(controllers.job.claim)

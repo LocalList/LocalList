@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import JobList from './JobList';
+import { Jumbotron, Button, ListGroup, ListGroupItem } from 'react-bootstrap';
 
 class Home extends React.Component {
   constructor(props) {
@@ -58,17 +59,23 @@ class Home extends React.Component {
     } else {
       return (
         <div>
-          <h1>Local List</h1>
-          <div>
-            <h3>Have a job you would like done?</h3>
-            {<NavLink activeClassName="active" to="/jobs/create"><button>Post a Job</button></NavLink>}
-          </div>
-          <div>
-            <h3>Are you a handyman?</h3>
-            <h5>Enter a location to search jobs near you:</h5>
-            <input onChange={this.updateHandymanSearch} type="text" />
-            <button onClick={this.handymanSearch}>Go!</button>
-          </div>
+          <Jumbotron>
+            <h1>Local List</h1>
+            <p>Local List is a simple app that makes it easy to be a good neighbor</p>
+            <p><Button bsStyle="primary">Learn more</Button></p>
+          </Jumbotron>
+          <ListGroup>
+            <ListGroupItem bsStyle="success">
+              <h3>Have a job you would like done?</h3>
+              {<NavLink activeClassName="active" to="/jobs/create"><Button bsStyle="primary">Post a Job</Button></NavLink>}
+            </ListGroupItem>
+            <ListGroupItem bsStyle="success">
+              <h3>Are you a handyman?</h3>
+              <h5>Enter a location to search jobs near you:</h5>
+              <input onChange={this.updateHandymanSearch} type="text" />
+              <Button bsStyle="primary" onClick={this.handymanSearch}>Go!</Button>
+            </ListGroupItem>
+          </ListGroup>
         </div>
       );
     }

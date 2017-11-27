@@ -5,13 +5,13 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return models.job.bulkCreate([{
       name: 'mow lawn',
-      location: 'San Fransisco',
+      location: 'San Francisco',
       userId: 1,
       doerId: null,
       complete: false,
     }, {
       name: 'rake leaves',
-      location: 'San Fransisco',
+      location: 'San Francisco',
       userId: 1,
       doerId: 2,
       complete: true,
@@ -24,7 +24,7 @@ module.exports = {
     },
     {
       name: 'make me a sandwich',
-      location: 'Los Angles',
+      location: 'Los Angeles',
       userId: 2,
       doerId: null,
       complete: false,

@@ -41,7 +41,7 @@ class Profile extends React.Component {
             <br />
             <div>{this.state.averageRating === null ? 'No rating yet!' : `Rating: ${this.state.averageRating}` }</div>
           </div>
-          <h3>Jobs that you have claimed on or done so far:</h3>
+          <h3>Jobs that you have claimed or done so far:</h3>
           <JobList user={this.props.user} jobs={this.state.user.claimedJobs} />
 
           <h3>Jobs that you have posted</h3>

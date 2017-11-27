@@ -9,6 +9,7 @@ module.exports = (db, DataTypes) => {
     location: DataTypes.STRING,
     userId: DataTypes.INTEGER,
     doerId: DataTypes.INTEGER,
+    complete: DataTypes.BOOLEAN,
   });
 
   Job.associate = (db) => {

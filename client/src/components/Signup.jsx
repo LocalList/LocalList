@@ -40,7 +40,7 @@ class Signup extends React.Component {
           <button
             onClick={() => {
               this.props.signup({
-                usernme: this.state.username,
+                username: this.state.username,
                 password: this.state.password,
               });
             }}

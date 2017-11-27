@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
-import JobList from './JobList';
 import { Jumbotron, Button, ListGroup, ListGroupItem } from 'react-bootstrap';
+import JobList from './JobList';
 
 class Home extends React.Component {
   constructor(props) {
@@ -20,19 +20,20 @@ class Home extends React.Component {
 
   onClaimed(job) {
     // remove job from jobs array
-    axios.get('/jobs/:id/claim');
+    axios.get(`/api/jobs/${job.id}/claim`)
+      .then((res) => {
+        const updatedJobs = this.state.jobs.slice(0);
 
-    const updatedJobs = this.state.jobs.slice(0);
+        updatedJobs.forEach((updatedJob, index) => {
+          if (job.id === updatedJob.id) {
+            updatedJobs.splice(index, 1);
+          }
+        });
 
-    updatedJobs.forEach((updatedJob, index) => {
-      if (job.id === updatedJob.id) {
-        updatedJobs.splice(index, 1);
-      }
-    });
-
-    this.setState({
-      jobs: updatedJobs,
-    });
+        this.setState({
+          jobs: updatedJobs,
+        });
+      });
   }
 
   updateHandymanSearch(e) {

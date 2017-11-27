@@ -13,6 +13,10 @@ module.exports = {
         },
       }, {
         association: 'claimedJobs',
+        include: {
+          model: models.user,
+          attributes: ['username'],
+        },
       }],
       attributes: ['id', 'username', 'createdAt'],
     })

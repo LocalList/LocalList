@@ -52,7 +52,7 @@ class Home extends React.Component {
     if (this.state.redirect) {
       return (
         <div>
-          <JobList onClaimed={this.onClaimed} jobs={this.state.jobs} />
+          <JobList onClaimed={this.onClaimed} jobs={this.state.jobs} user={this.props.user} />
         </div>
       );
     } else {

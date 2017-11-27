@@ -52,6 +52,9 @@ router.route('/jobs/:id')
 router.route('/jobs/:id/claim')
   .get(auth, controllers.job.claim);
 
+router.route('/users/:id')
+  .get(controllers.user.get);
+
 router.route('/reviews')
   .get(controllers.review.get)
   .post(auth, controllers.review.post);

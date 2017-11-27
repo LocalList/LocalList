@@ -24,7 +24,7 @@ const PropsRoute = ({ component, ...rest }) => {
 };
 
 PropsRoute.propTypes = {
-  component: PropTypes.element.isRequired,
+  component: PropTypes.func.isRequired,
 };
 
 const PrivateRoute = ({ component, user, ...rest }) => (
@@ -45,8 +45,7 @@ const PrivateRoute = ({ component, user, ...rest }) => (
 );
 
 PrivateRoute.propTypes = {
-  component: PropTypes.element.isRequired,
-  user: PropTypes.shape({}).isRequired,
+  component: PropTypes.func.isRequired,
 };
 
 export { PropsRoute, PrivateRoute };

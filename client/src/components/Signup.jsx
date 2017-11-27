@@ -54,7 +54,6 @@ class Signup extends React.Component {
 }
 
 Signup.propTypes = {
-  user: PropTypes.shape({}).isRequired,
   signup: PropTypes.func.isRequired,
 };
 

@@ -7,13 +7,17 @@ module.exports = {
     models.user.findById(req.params.id, {
       include: [{
         association: 'jobs',
+        include: {
+          model: models.user,
+          attributes: ['username'],
+        },
       }, {
-        association: 'claimedJob',
+        association: 'claimedJobs',
       }],
       attributes: ['id', 'username', 'createdAt'],
     })
       .then((user) => {
-        res.writeHead(202);
+        res.writeHead(200, JsonHeaders);
         res.end(JSON.stringify(user));
       });
   },

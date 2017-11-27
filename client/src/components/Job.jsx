@@ -8,6 +8,11 @@ const Job = props => (
     <NavLink activeClassName="active" to={`/jobs/${props.job.id}`}>
       <h4>{props.job.name}</h4>
     </NavLink>
+    <h5>Posted by:
+      <NavLink activeClassName="active" to={`/users/${props.job.userId}`}>
+        {props.job.user.username}
+      </NavLink>
+    </h5>
     <p>{props.job.location}</p>
     { props.user && props.user.id === props.job.doerId || props.user && props.user.id === props.job.userId ? null : <button onClick={() => { props.onClaimed(props.job); }}>Claim this job!</button> }
     <MarkButton user={props.user} job={props.job} />

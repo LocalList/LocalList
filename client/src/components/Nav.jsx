@@ -8,8 +8,8 @@ const Nav = () => (
     <NavLink activeClassName="active" to="/logout"><button className="btn btn-outline-secondary">Log out</button></NavLink>
     <NavLink activeClassName="active" to="/signup"><button className="btn btn-outline-secondary">Sign up</button></NavLink>
     <NavLink activeClassName="active" to="/protected"><button className="btn btn-outline-secondary">Members Only!</button></NavLink>
-    <NavLink activeClassName="active" to="/profile"><button className="btn btn-outline-secondary">Profile</button></NavLink>
     <NavLink activeClassName="active" to="/create-job"><button className="btn btn-outline-secondary">Create Job</button></NavLink>
+    {props.user && <NavLink activeClassName="active" to={`/users/${props.user.id}`}><button className="btn btn-outline-secondary">My Profile</button></NavLink>}
   </div>
 );
 

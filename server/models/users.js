@@ -13,7 +13,7 @@ module.exports = (db, DataTypes) => {
 
   User.associate = (db) => {
     User.hasMany(db.job, { foreignKey: 'userId' });
-    User.hasMany(db.job, { foreignKey: 'doerId', as: 'claimedJob' });
+    User.hasMany(db.job, { foreignKey: 'doerId', as: { singular: 'claimedJob', plural: 'claimedJobs' } });
   };
 
   User.beforeCreate((user) => {

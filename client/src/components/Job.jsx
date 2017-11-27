@@ -9,7 +9,7 @@ const Job = props => (
       <h4>{props.job.name}</h4>
     </NavLink>
     <p>{props.job.location}</p>
-    <button onClick={() => { props.onClaimed(props.job); }}>Claim this job!</button>
+    { props.user.id === props.job.userId ? null : <button onClick={() => { props.onClaimed(props.job); }}>Claim this job!</button> }
     <MarkButton user={props.user} job={props.job} />
   </div>
 );

@@ -14,16 +14,16 @@ class MarkButton extends React.Component {
 
   handlerClick() {
     axios.put(`/api/jobs/${this.props.job.id}`)
-      .then ((res) => {
+      .then((res) => {
         this.setState({
           job: res.data,
         });
       })
-      .catch(err => {
+      .catch((err) => {
         if (err) {
           throw err;
         }
-      })
+      });
   }
 
   render() {
@@ -39,7 +39,7 @@ class MarkButton extends React.Component {
     } else if (!this.state.job.complete) {
       return <p>not Complete Yet</p>;
     } else {
-      return <span></span>;
+      return <span />;
     }
   }
 }

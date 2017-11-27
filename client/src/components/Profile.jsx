@@ -29,6 +29,7 @@ class Profile extends React.Component {
   getUser() {
     return axios.get(`../api/users/${this.props.match.params.id}`)
       .then((response) => {
+        console.log(response.data);
         this.setState({ user: response.data });
       });
   }

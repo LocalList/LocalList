@@ -1,6 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 // maybe doesnt have to be a stateful component
 // could possibly attach this component to JobList
@@ -57,7 +58,7 @@ class CreateJob extends React.Component {
 }
 
 CreateJob.propTypes = {
-  user: React.PropTypes.shape({ id: React.PropTypes.number }).isRequired,
+  user: PropTypes.shape({ id: PropTypes.number.isRequired }).isRequired,
 };
 
 export default CreateJob;

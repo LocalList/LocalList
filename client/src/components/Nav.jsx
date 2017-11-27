@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 const Nav = props => (
   <div className="navbar navbar-toggleable-md navbar-light bg-faded" role="navigation">
+    <img className="navbar-brand" src="../../dist/eco-green-leaf-icon-152-170142.png" />
     <NavLink activeClassName="active" to="/"><button className="btn btn-outline-secondary">Home</button></NavLink>
     <NavLink activeClassName="active" to="/login"><button className="btn btn-outline-secondary">Log in</button></NavLink>
     <NavLink activeClassName="active" to="/logout"><button className="btn btn-outline-secondary">Log out</button></NavLink>

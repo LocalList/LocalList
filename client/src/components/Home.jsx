@@ -62,7 +62,7 @@ class Home extends React.Component {
     } else {
       return (
         <div>
-          <Jumbotron>
+          <Jumbotron bsStyle="info">
             <h1>Local List</h1>
             <p>Local List is a simple app that makes it easy to be a good neighbor</p>
             <p><Button bsStyle="primary">Learn more</Button></p>

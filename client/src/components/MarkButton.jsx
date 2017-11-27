@@ -27,6 +27,9 @@ class MarkButton extends React.Component {
   }
 
   render() {
+    if (this.props.user === undefined || this.props.user === null) {
+      return <p>{this.state.job.complete ? 'Complete' : 'Not Complete Yet'}</p>;
+    }
     if (!this.state.job.complete && this.props.user.id === this.state.job.doerId) {
       return (
         <div>
